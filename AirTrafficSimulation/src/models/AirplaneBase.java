@@ -6,7 +6,7 @@ import java.util.List;
 
 public class AirplaneBase {
 	
-	//Base that is used to manage a collection of airplanes.
+	//A base that is used to store and manage a collection of airplanes.
 
 	private ArrayList<Airplane> airplanes = new ArrayList<>();
 

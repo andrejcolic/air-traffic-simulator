@@ -1,6 +1,5 @@
 package leftPanel;
 
-
 import java.awt.BorderLayout;
 import java.awt.Checkbox;
 import java.awt.GridLayout;
@@ -88,7 +87,6 @@ public class AirportCheckboxList extends Panel {
         return out;
     }
 
-    /** Dodaje ItemListener na sve checkbox-ove. */
     public void addItemListener(ItemListener l) {
         for (Checkbox cb : checkBoxes) cb.addItemListener(l);
     }

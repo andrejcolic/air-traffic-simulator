@@ -12,6 +12,7 @@ import java.awt.Toolkit;
 import java.awt.event.AWTEventListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,9 +20,10 @@ import centerPanel.AirTrafficMap;
 import exceptions.InvalidInputException;
 import leftPanel.AirportTablePanel;
 import menu.FileMenu;
-import models.Airport;
 import models.AirportBase;
 import models.FlightBase;
+import models.StormBase;
+import models.TyphoonBase;
 import rightPanel.FlightTablePanel;
 import simulation.FlightScheduler;
 import simulation.FlightSimulation;
@@ -30,7 +32,10 @@ public class AirTrafficSimulator extends Frame {
 	
 	public AirportBase airportBase = new AirportBase();
 	public Set<String> visibleAirports = new HashSet<>();
+	public ArrayList<String> closedAirports = new ArrayList<>();
 	public FlightBase flightBase = new FlightBase();
+	public TyphoonBase typhoonBase = new TyphoonBase();
+	public StormBase stormBase = new StormBase();
 	MenuBar menuBar = new MenuBar();
 	FileMenu fileMenu = new FileMenu(this);
 	public AirTrafficMap scene = new AirTrafficMap(this);
@@ -107,7 +112,6 @@ public class AirTrafficSimulator extends Frame {
 		flightTablePanel.endSimulation.addActionListener((ae) -> {
 			if(sim != null && sim.isActive()) {
 				sim.reset();
-				timer.go();
 			}
 		});
 		
@@ -116,9 +120,6 @@ public class AirTrafficSimulator extends Frame {
 	public void setMaskKey(boolean b) {
 		maskKey = b;
 	}
-	
-	
-	
 	
 	public AirTrafficSimulator() {
 		

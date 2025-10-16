@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class FlightBase {
+	
+	//A base that is used to store and manage a collection of flight.
 
 	private ArrayList<Flight> flights = new ArrayList<>();
 

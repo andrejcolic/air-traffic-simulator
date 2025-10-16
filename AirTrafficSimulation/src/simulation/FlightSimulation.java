@@ -5,6 +5,8 @@ import java.util.List;
 import guiCore.AirTrafficSimulator;
 import models.Airplane;
 import models.AirplaneBase;
+import models.Storm;
+import models.Typhoon;
 
 public class FlightSimulation {
 	
@@ -75,8 +77,20 @@ public class FlightSimulation {
 		
 		airplaneBase.moveAirplanes(step);
 		
+		handleCollisions();
+		
 		owner.scene.repaint();
 		owner.flightTablePanel.setSimTime(ms);	
 	}
 	
+	void handleCollisions() {
+		for(Airplane a : airplaneBase.getAll()) {
+			for(Typhoon t : owner.typhoonBase.getAll()) {
+				a.hitTyphoon(t, owner.scene.getWidth());
+			}
+			for(Storm s : owner.stormBase.getAll()) {
+				a.hitStorm(s, owner.scene.getWidth());
+			}
+		}
+	}
 }

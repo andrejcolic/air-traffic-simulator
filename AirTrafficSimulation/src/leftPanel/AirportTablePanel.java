@@ -91,8 +91,8 @@ public class AirportTablePanel extends Panel {
 	public void addAirport(String codeText, String nameText, String xCordText, String yCordText) throws InvalidInputException{
 		Airport.validateAirport(codeText, nameText, xCordText, yCordText, owner.airportBase);
 		
-		int x = Integer.parseInt(xCordText);
-	    int y = Integer.parseInt(yCordText);
+		float x = Float.parseFloat(xCordText);
+	    float y = Float.parseFloat(yCordText);
 	    
 	    Airport a = new Airport(codeText, nameText, x, y);
 	    owner.airportBase.add(a);

@@ -1,13 +1,12 @@
 package menu;
 
 import java.awt.Color;
-import java.awt.FileDialog;
 import java.awt.Menu;
 import java.awt.MenuItem;
 import java.awt.MenuShortcut;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
 import java.io.File;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -22,10 +21,9 @@ import exceptions.InvalidExtensionException;
 import exceptions.InvalidFilenameCharactersException;
 import exceptions.InvalidInputException;
 import guiCore.AirTrafficSimulator;
-import leftPanel.AirportTablePanel;
+import guiCore.InfoDialog;
 import models.Airport;
 import models.Flight;
-import simulation.FlightScheduler;
 
 public class FileMenu extends Menu {
 	
@@ -60,6 +58,10 @@ public class FileMenu extends Menu {
 		this.add(exit);
 		
 		exit.setShortcut(new MenuShortcut(KeyEvent.VK_Q));
+		
+		exit.addActionListener(ae -> {
+		    owner.dispatchEvent(new WindowEvent(owner, WindowEvent.WINDOW_CLOSING));
+		});
 		
 		ldAirports.addActionListener(ae -> {
 			String filename;
@@ -96,7 +98,7 @@ public class FileMenu extends Menu {
          
                 } 
 		    	catch (FileErrorException e) {
-                    ErrorDialog.showErrorDialog(owner, "Error", e.getMessage());
+                    InfoDialog.showInfoDialog(owner, "Error", e.getMessage());
                 }
 			}
 		    
@@ -137,7 +139,7 @@ public class FileMenu extends Menu {
          
                 } 
 		    	catch (FileErrorException e) {
-                    ErrorDialog.showErrorDialog(owner, "Error", e.getMessage());
+                    InfoDialog.showInfoDialog(owner, "Error", e.getMessage());
                 }
 			}
 		    
@@ -152,7 +154,7 @@ public class FileMenu extends Menu {
 		            owner.airportTablePanel.setStatus("Airports saved to: " + filename, Color.GREEN);
 		        } 
 		    	catch (FileErrorException e) {
-		            ErrorDialog.showErrorDialog(owner, "Error", e.getMessage());
+		            InfoDialog.showInfoDialog(owner, "Error", e.getMessage());
 		        }
 			}
 		});
@@ -166,7 +168,7 @@ public class FileMenu extends Menu {
 		            owner.flightTablePanel.setStatus("Flights saved to: " + filename, Color.GREEN);
 		        } 
 		    	catch (FileErrorException e) {
-		            ErrorDialog.showErrorDialog(owner, "Error", e.getMessage());
+		            InfoDialog.showInfoDialog(owner, "Error", e.getMessage());
 		        }
 			}
 		});
@@ -183,7 +185,7 @@ public class FileMenu extends Menu {
 			validateFilename(filename, mode);
 		}
 		catch (Exception e) {
-			ErrorDialog.showErrorDialog(owner, "Error", e.getMessage());
+			InfoDialog.showInfoDialog(owner, "Error", e.getMessage());
 			return null;
 		}
 		return filename;
@@ -282,7 +284,7 @@ public class FileMenu extends Menu {
         for (Flight f : owner.flightBase.getAll()) {
             String a1 = f.getDepartureAirport().getCode();
             String a2   = f.getDestinationAirport().getCode();
-            String time = String.valueOf(f.getDepTime());
+            String time = String.valueOf(f.getDepartureTime());
             String dur  = String.valueOf(f.getDuration());
 
             sb.append(csv(a1)).append(',')

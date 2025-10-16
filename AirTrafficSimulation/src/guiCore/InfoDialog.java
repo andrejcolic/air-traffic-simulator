@@ -1,22 +1,20 @@
-package menu;
+package guiCore;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Dialog;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextArea;
 import java.awt.Window;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class ErrorDialog {
+public class InfoDialog {
 	
-	private ErrorDialog() {}
+	private InfoDialog() {}
 	
-	public static void showErrorDialog(Window owner, String title, String message) {
+	public static void showInfoDialog(Window owner, String title, String message) {
 		Dialog dialog = new Dialog(owner, title, Dialog.ModalityType.APPLICATION_MODAL);
 	    dialog.setLayout(new BorderLayout());
 

@@ -8,27 +8,18 @@ import exceptions.InvalidInputException;
 public class Airport extends Model{
 	
 	//Airport is a model that appears on the map. 
-	//It has a 2D location and is drawn as a gray square.
+	//It has a 2D location and is drawn as a gray square with a 3 letter code label next to it.
 	
 	private String code; //3 Letter code unique to every airport
 	private String name;
 	
-	public Airport(String code, String name, int x, int y) {
+	public Airport(String code, String name, double x, double y) {
 		super(x, y, 15);
 		
 		this.code = code;
 		this.name = name;
 	}
 
-	public String getCode() {
-		return code;
-	}
-
-	public String getName() {
-		return name;
-	}
-	
-	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(name).append(" ").append(code).append(" ");
@@ -81,15 +72,15 @@ public class Airport extends Model{
 			errorMsg += "Code must contain exactly 3 letters";
 		}
 		
-		int xTest;
-		int yTest;
+		double xTest;
+		double yTest;
 		try {
-			xTest = Integer.parseInt(xStr);
-			yTest = Integer.parseInt(yStr);
+			xTest = Double.parseDouble(xStr);
+			yTest = Double.parseDouble(yStr);
 		} catch (NumberFormatException e) {
 	    	if (typeError)
 	    		errorMsg += ", ";
-			errorMsg += "X and Y coordinates must be integers.";
+			errorMsg += "X and Y coordinates must be numbers.";
 			throw new InvalidInputException(errorMsg);
 		}
 		
@@ -106,4 +97,11 @@ public class Airport extends Model{
 		}
 	}
 	
+	public String getCode() {
+		return code;
+	}
+
+	public String getName() {
+		return name;
+	}
 }

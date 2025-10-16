@@ -13,12 +13,9 @@ public class IdleWarningDialog extends Dialog {
 	
 	private Label msg;
 	private Button continueBtn;
-	private AirTrafficSimulator owner;
 	
 	public IdleWarningDialog(AirTrafficSimulator owner) {
-		
 		super(owner, "Idle Warning");
-		this.owner = owner;
 		
 		setLocation(700, 300);
         setResizable(false);

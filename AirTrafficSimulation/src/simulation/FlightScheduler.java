@@ -32,14 +32,15 @@ public class FlightScheduler {
 	    
 	    for (Map.Entry<Airport, List<Flight>> e : airportFlights.entrySet()) {
             List<Flight> list = e.getValue();
-            list.sort((a, b) -> Integer.compare(a.getDepMs(), b.getDepMs()));
+            list.sort((a, b) -> Integer.compare(a.getDepartureTimeMs(), b.getDepartureTimeMs()));
             
             int last = -gap;
             for(Flight f : list) {
-            	int planned = f.getDepMs();
+            	int planned = f.getDepartureTimeMs();
             	int allowed = last + gap;
             	
             	int departure = Math.max(planned, allowed);
+            	f.setDelay((departure-planned)/60000);
             	schedule.add(new DepartureInfo(f, departure));
             	last = departure;
             }
