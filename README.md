@@ -1,6 +1,6 @@
 # air-traffic-simulator
 
-University OOP project: a desktop **Java (AWT)** Air-Traffic simulator.  
+A desktop **Java (AWT)** Air-Traffic simulator.  
 Small, testable components with strict OOP design and clean architecture.
 
 ## Features
